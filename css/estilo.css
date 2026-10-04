@@ -1,0 +1,90 @@
+/* =====================================================
+   ESTILO DO PAINEL — tema CLARO
+   Dica: mude as cores aqui em cima e tudo se atualiza.
+   ===================================================== */
+:root{
+  --navy:#1f3864; --blue:#2e75b6;          /* cores principais */
+  --bg:#f4f7fb; --card:#fff; --line:#dbe3ee; /* fundo, cartões, bordas */
+  --txt:#1b2733; --mut:#6b7a8c;            /* texto normal e texto apagado */
+  /* cores das situações: fundo (g,y,o,r) e texto (gt,yt,ot,rt) */
+  --g:#c9e8b7; --gt:#245c1a; --y:#fff0b3; --yt:#6b5300;
+  --o:#fbd0b0; --ot:#8a3f06; --r:#ffc2c4; --rt:#9b1c22;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font:14px/1.45 system-ui,"Segoe UI",Arial,sans-serif}
+
+/* ----- Cabeçalho e abas ----- */
+header{background:#fff;border-bottom:1px solid var(--line);padding:18px 0 0}
+.w,main{max-width:1280px;margin:0 auto;padding:0 4vw}
+main{padding:20px 4vw 50px}
+header h1{margin:0;font-size:clamp(20px,3vw,27px);color:var(--navy)}
+header p{margin:2px 0 12px;color:var(--mut)}
+.tabs{display:flex;gap:4px;flex-wrap:wrap}
+.tabs button,.tabs a{background:none;color:var(--mut);border:0;border-bottom:3px solid transparent;border-radius:0;padding:10px 14px;font-weight:700;text-decoration:none;cursor:pointer}
+.tabs button.on{color:var(--navy);border-color:var(--blue)}
+.tabs button:hover,.tabs a:hover{background:#f0f5fb}
+
+/* ----- Barra de filtros ----- */
+.bar{display:flex;flex-wrap:wrap;gap:12px;align-items:end;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin-bottom:16px;position:sticky;top:8px;z-index:5;box-shadow:0 4px 14px #1f38641a}
+.bar label{display:flex;flex-direction:column;font-size:11px;font-weight:700;color:var(--mut);text-transform:uppercase;gap:4px}
+.bar input,.bar select{font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;min-width:150px}
+#escola{min-width:260px;max-width:340px}
+#meta{width:90px;min-width:0;font-weight:700;color:var(--navy);background:#fffbd6;border-color:#e0c800}
+button{font:inherit;padding:8px 14px;border:0;border-radius:8px;background:var(--blue);color:#fff;font-weight:600;cursor:pointer}
+button:hover{background:var(--navy)}
+button:disabled{opacity:.5;cursor:not-allowed}
+
+/* ----- Indicadores (KPIs) ----- */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:12px;margin-bottom:16px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 15px;border-top:4px solid var(--blue)}
+.kpi small{display:block;color:var(--mut);font-size:11px;font-weight:700;text-transform:uppercase}
+.kpi b{font-size:25px;color:var(--navy)}
+
+/* ----- Cartões e gráficos ----- */
+.grid{display:grid;gap:16px;margin-bottom:16px}
+.grid.e{grid-template-columns:1fr 1fr}
+@media(max-width:900px){.grid.e{grid-template-columns:1fr}}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:16px}
+.grid section{margin:0}
+h2{margin:0 0 4px;font-size:16px;color:var(--navy)}
+.sub{margin:0 0 10px;color:var(--mut);font-size:12px}
+.cv{position:relative;height:400px}.cv.t{height:470px}.cv.s{height:380px}
+
+/* ----- Faixa "visão geral / escola selecionada" ----- */
+.ctx{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-left:6px solid var(--blue);border-radius:14px;padding:14px 18px;margin-bottom:16px}
+.ctx.sch{border-left-color:#7a4fd0;background:#faf8ff}
+.ctx small{font-size:11px;font-weight:700;color:var(--mut)}
+.ctx h2{font-size:20px;margin:2px 0}.ctx p{margin:0}
+
+/* ----- Barras da aba Componentes ----- */
+.row.cmp{display:grid;grid-template-columns:48px 1fr 170px;gap:10px;align-items:center;margin:7px 0;cursor:pointer}
+.row.cmp:hover{background:#f0f5fb}
+.trk{position:relative;height:16px;background:#eef2f7;border-radius:8px}
+.fill{height:100%;border-radius:8px}
+.mk{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--navy)}
+.fill.g{background:#7cc65c}.fill.y{background:#f0c63c}.fill.o{background:#ee9250}.fill.r{background:#e0605a}
+
+/* ----- Tabelas ----- */
+.tw{overflow:auto;max-height:600px;border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th{position:sticky;top:0;background:var(--blue);color:#fff;padding:9px 8px;cursor:pointer;white-space:nowrap;z-index:2}
+td{padding:7px 8px;border-top:1px solid var(--line);text-align:center}
+td:nth-child(2){text-align:left;min-width:240px}
+#tb tbody tr{cursor:pointer}#tb tbody tr:hover td{background:#f5f9ff}
+.hm th{cursor:default}.hm td{font-size:12px}
+.rk{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;margin:auto}
+.rk.c{background:#c00000}.rk.e{background:#ed7d31}.rk.d{background:#ffd966;color:#000}
+
+/* ----- Etiquetas de situação (verde, amarelo, laranja, vermelho) ----- */
+.pill{padding:3px 10px;border-radius:99px;font-weight:700;font-size:12px;white-space:nowrap}
+.g{background:var(--g);color:var(--gt)}.y{background:var(--y);color:var(--yt)}
+.o{background:var(--o);color:var(--ot)}.r{background:var(--r);color:var(--rt)}
+.leg{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.leg span{padding:3px 10px;border-radius:6px;font-size:12px;font-weight:600}
+
+/* ----- Janela (modal) ----- */
+.md{position:fixed;inset:0;background:#1f38648c;display:none;place-items:center;z-index:20;padding:16px}
+.md.on{display:grid}
+.mc{background:#fff;border-radius:16px;max-width:760px;width:100%;max-height:92vh;overflow:auto;padding:22px;position:relative}
+.x{position:absolute;right:12px;top:12px;background:#eef2f7;color:var(--txt)}
+footer{text-align:center;color:var(--mut);font-size:12px;margin-top:20px}
