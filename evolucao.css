@@ -1,0 +1,17 @@
+/* =====================================================
+   ESTILOS EXTRAS DA PÁGINA DE EVOLUÇÃO
+   (o visual geral vem do estilo.css)
+   ===================================================== */
+.tabs a.on{color:var(--navy);border-color:var(--blue)}   /* link da página atual */
+#busca{min-width:220px}
+
+/* Tabela: a 1ª coluna (nome da escola) fica alinhada à esquerda */
+#tabela td:nth-child(2){text-align:center;min-width:0}
+#tabela td:first-child{text-align:left;min-width:240px}
+#tabela tbody tr{cursor:pointer}
+#tabela tbody tr:hover td{background:#f5f9ff}
+#tabela tr.sel td{background:#f1ebff;font-weight:700}   /* escola selecionada */
+
+/* Diferenças: verde sobe, vermelho cai */
+.pos{color:#245c1a;font-weight:700}
+.neg{color:#9b1c22;font-weight:700}
