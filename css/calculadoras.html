@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Calculadoras — SARESP, SAEB e IFA</title>
+  <link rel="stylesheet" href="../css/estilo.css">
+  <link rel="stylesheet" href="../css/calculadoras.css">
+</head>
+<body>
+
+<header><div class="w">
+  <h1>🧮 Calculadoras — SARESP, SAEB e IFA</h1>
+  <p>Preencha só os campos amarelos; o resto é calculado sozinho</p>
+  <nav class="tabs">
+    <a href="../index.html">🏠 Painel</a>
+    <a href="evolucao.html">📈 Evolução</a>
+    <a href="calculadoras.html" class="on">🧮 Calculadoras</a>
+  </nav>
+</div></header>
+
+<main>
+  <!-- Abas das calculadoras -->
+  <nav class="tabs" id="abas" style="margin-bottom:16px">
+    <button data-v="saresp" class="on">🏅 SARESP (Ouro / Diamante)</button>
+    <button data-v="saeb">📘 SAEB 9º ano</button>
+    <button data-v="ifa">🕒 IFA (frequência)</button>
+  </nav>
+
+  <!-- ========== SARESP ========== -->
+  <section data-p="saresp">
+    <h2>🏅 Quantos acertos para atingir a meta Ouro ou Diamante?</h2>
+    <p class="sub">A meta da escola vem da planilha. Informe a nota SED 2025 e as notas por disciplina (boletim) da etapa escolhida.</p>
+    <div class="campos">
+      <label>Escola<select id="s-escola"></select></label>
+      <label>Meta<select id="s-tipo"><option value="0">Ouro</option><option value="1">Diamante</option><option value="x">Digitar outra</option></select></label>
+      <label>Nota SED 2025<input class="am" id="s-nota" inputmode="decimal" placeholder="ex.: 4,5"></label>
+      <label>Meta 2026 (nota)<input class="am" id="s-meta" inputmode="decimal" placeholder="ex.: 5,0"></label>
+      <label>Etapa<select id="s-etapa"></select></label>
+    </div>
+    <div class="kpis" id="s-kpis"></div>
+    <div class="tw calc"><table id="s-tab"></table></div>
+  </section>
+
+  <!-- ========== SAEB ========== -->
+  <section data-p="saeb" hidden>
+    <h2>📘 SAEB 2025 — 9º ano (Português + Matemática)</h2>
+    <p class="sub">Prova com 26 questões de Português e 26 de Matemática (52 no total).</p>
+    <div class="campos">
+      <label>Nota SED 2023<input class="am" id="b-nota" inputmode="decimal"></label>
+      <label>Meta 2025<input class="am" id="b-meta" inputmode="decimal"></label>
+    </div>
+    <div class="kpis" id="b-kpis"></div>
+  </section>
+
+  <!-- ========== IFA ========== -->
+  <section data-p="ifa" hidden>
+    <h2>🕒 IFA — Índice de Frequência Anual</h2>
+    <p class="sub">Calcula a frequência necessária nas semanas que faltam e quantos alunos precisam estar presentes (busca ativa).</p>
+    <div class="campos">
+      <label>Meta de IFA (%)<input class="am" id="i-meta" inputmode="decimal" placeholder="ex.: 95"></label>
+      <label>Semana atual<input class="am" id="i-atual" inputmode="decimal"></label>
+      <label>Total de semanas<input class="am" id="i-total" inputmode="decimal" value="42"></label>
+      <label>Frequência acumulada (%)<input class="am" id="i-acum" inputmode="decimal"></label>
+    </div>
+    <div class="kpis" id="i-kpis"></div>
+    <h2 style="margin-top:18px">Alunos necessários por turno</h2>
+    <p class="sub">Informe as matrículas ativas e a presença da semana (%). Deixe em branco o turno que a escola não tem.</p>
+    <div class="tw calc"><table id="i-tab"></table></div>
+  </section>
+
+  <footer>Fórmulas da planilha Calculadora SARESP · Desenvolvido por Luciano Julio da Silva — PEC Desenvolvimento Curricular de Tecnologia.</footer>
+</main>
+
+<script src="../js/metas-saresp.js"></script>
+<script src="../js/calculadoras.js"></script>
+</body>
+</html>
