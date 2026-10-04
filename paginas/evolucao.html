@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Evolução bimestre a bimestre — Prova Paulista</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <!-- "../" = sobe uma pasta, porque esta página está dentro de "paginas/" -->
+  <link rel="stylesheet" href="../css/estilo.css">
+  <link rel="stylesheet" href="../css/evolucao.css">
+</head>
+<body>
+
+<!-- ========== CABEÇALHO ========== -->
+<header><div class="w">
+  <h1>📈 Evolução bimestre a bimestre — Prova Paulista 2026</h1>
+  <p>Acompanhe a 1ª, 2ª e 3ª prova de cada escola, comparando com o total da URE</p>
+  <nav class="tabs">
+    <a href="../index.html">🏠 Painel</a>
+    <a href="evolucao.html" class="on">📈 Evolução</a>
+    <a href="calculadoras.html">🧮 Calculadoras</a>
+  </nav>
+</div></header>
+
+<main>
+  <!-- ========== FILTROS ========== -->
+  <div class="bar">
+    <label>Escola<select id="escola"></select></label>
+    <label>Componente<select id="comp"></select></label>
+    <label>Buscar na tabela<input id="busca" type="search" placeholder="Digite parte do nome"></label>
+    <button id="reset">Limpar filtros</button>
+  </div>
+
+  <div id="ctx"></div>
+  <div class="kpis" id="kpis"></div>
+
+  <!-- ========== GRÁFICOS ========== -->
+  <div class="grid e">
+    <section><h2>% de acertos por prova</h2><p class="sub" id="s1"></p><div class="cv s"><canvas id="c1"></canvas></div></section>
+    <section><h2>Participação por prova</h2><p class="sub">Percentual de estudantes que fizeram a prova.</p><div class="cv s"><canvas id="c2"></canvas></div></section>
+  </div>
+  <section><h2>Componentes: 1ª × 2ª × 3ª prova</h2><p class="sub" id="s3"></p><div class="cv"><canvas id="c3"></canvas></div></section>
+
+  <!-- ========== TABELA DINÂMICA ========== -->
+  <section>
+    <h2>📋 Tabela de evolução por escola</h2>
+    <p class="sub" id="tsub"></p>
+    <div class="tw"><table id="tabela"></table></div>
+  </section>
+
+  <footer>Dados: planilha Prova Paulista 2026 — URE São José do Rio Preto · "Total URE" é o valor da linha Total da planilha.<br>
+  Desenvolvido por Luciano Julio da Silva — PEC Desenvolvimento Curricular de Tecnologia.</footer>
+</main>
+
+<!-- ORDEM IMPORTA: primeiro os dados, depois o programa -->
+<script src="../js/dados-evolucao.js"></script>
+<script src="../js/evolucao.js"></script>
+</body>
+</html>
