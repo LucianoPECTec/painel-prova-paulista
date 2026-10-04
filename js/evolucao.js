@@ -82,15 +82,16 @@ function graficoLinha(id, nome, dados, rede, ehRede) {
 function render() {
   const alvo = estado.escola ? ESCOLAS.find(e => e.nome === estado.escola) : REDE;
   const v = valores(alvo), vr = valores(REDE);
-  const d13 = dif(v[0], v[2]), d23 = dif(v[1], v[2]), t = tendencia(v);
+  const d12 = dif(v[0], v[1]), d23 = dif(v[1], v[2]), d13 = dif(v[0], v[2]), t = tendencia(v);
 
   // Faixa de contexto e cartões de indicadores
   $("#ctx").className = estado.escola ? "ctx sch" : "ctx";
   $("#ctx").innerHTML = `<div><small>${estado.escola ? "ESCOLA SELECIONADA" : "VISÃO GERAL"}</small><h2>${estado.escola ? "🏫 " : "🌎 "}${esc(alvo.nome)}</h2>
     <p>Base: <b>${nomeBase()}</b>${t ? ` · <span class="pill ${t.cor}">${t.texto}</span>` : ""}</p></div>`;
   $("#kpis").innerHTML = cartao("1ª Prova", pct(v[0])) + cartao("2ª Prova", pct(v[1])) + cartao("3ª Prova", pct(v[2])) +
-    cartao("Variação 1ª → 3ª", `<span class="${classeDif(d13)}">${textoDif(d13)}</span>`) +
+    cartao("Variação 1ª → 2ª", `<span class="${classeDif(d12)}">${textoDif(d12)}</span>`) +
     cartao("Variação 2ª → 3ª", `<span class="${classeDif(d23)}">${textoDif(d23)}</span>`) +
+    cartao("Total 1ª → 3ª", `<span class="${classeDif(d13)}">${textoDif(d13)}</span>`) +
     cartao("Participação 3ª", pct(alvo.part[2]));
 
   // Gráficos
@@ -110,7 +111,7 @@ function render() {
 function desenharTabela() {
   const linhas = ESCOLAS.map(e => {
     const v = valores(e);
-    return {nome: e.nome, v1: v[0], v2: v[1], v3: v[2], d13: dif(v[0], v[2]), d23: dif(v[1], v[2]), t: tendencia(v)};
+    return {nome: e.nome, v1: v[0], v2: v[1], v3: v[2], d12: dif(v[0], v[1]), d23: dif(v[1], v[2]), d13: dif(v[0], v[2]), t: tendencia(v)};
   }).filter(r => r.nome.toLowerCase().includes(estado.busca.toLowerCase()));
 
   // Ordena (valores vazios ficam sempre no fim)
@@ -123,10 +124,10 @@ function desenharTabela() {
   });
 
   $("#tsub").textContent = linhas.length + " escola(s) · base: " + nomeBase() + " · clique no título para ordenar e na linha para ver a escola nos gráficos";
-  const colunas = [["nome", "Escola"], ["v1", "1ª Prova"], ["v2", "2ª Prova"], ["v3", "3ª Prova"], ["d13", "Δ 1ª→3ª"], ["d23", "Δ 2ª→3ª"], ["t", "Trajetória"]];
+  const colunas = [["nome", "Escola"], ["v1", "1ª Prova"], ["v2", "2ª Prova"], ["v3", "3ª Prova"], ["d12", "1ª → 2ª"], ["d23", "2ª → 3ª"], ["d13", "Total 1ª → 3ª"], ["t", "Trajetória"]];
   $("#tabela").innerHTML = "<thead><tr>" + colunas.map(c => `<th data-k="${c[0]}">${c[1]}${k === c[0] ? (estado.sentido > 0 ? " ▲" : " ▼") : ""}</th>`).join("") + "</tr></thead><tbody>" +
     linhas.map(r => `<tr data-n="${esc(r.nome)}"${r.nome === estado.escola ? ' class="sel"' : ""}><td>${esc(r.nome)}</td><td>${pct(r.v1)}</td><td>${pct(r.v2)}</td><td>${pct(r.v3)}</td>
-      <td class="${classeDif(r.d13)}">${textoDif(r.d13)}</td><td class="${classeDif(r.d23)}">${textoDif(r.d23)}</td>
+      <td class="${classeDif(r.d12)}">${textoDif(r.d12)}</td><td class="${classeDif(r.d23)}">${textoDif(r.d23)}</td><td class="${classeDif(r.d13)}">${textoDif(r.d13)}</td>
       <td>${r.t ? `<span class="pill ${r.t.cor}">${r.t.texto}</span>` : "—"}</td></tr>`).join("") + "</tbody>";
 
   document.querySelectorAll("#tabela th").forEach(th => th.onclick = () => {
