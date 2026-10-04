@@ -1,0 +1,17 @@
+/* =====================================================
+   ESTILOS EXTRAS DA PÁGINA DE CALCULADORAS
+   ===================================================== */
+.tabs a.on{color:var(--navy);border-color:var(--blue)}   /* link da página atual */
+
+/* Linha de campos para preencher */
+.campos{display:flex;flex-wrap:wrap;gap:12px;margin:10px 0 14px}
+.campos label{display:flex;flex-direction:column;font-size:11px;font-weight:700;color:var(--mut);text-transform:uppercase;gap:4px}
+.campos input,.campos select,.calc input{font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;min-width:150px}
+.am,.calc input{background:#fffbd6!important;border-color:#e0c800!important}   /* amarelo = preencher */
+
+/* Tabelas: 1ª coluna à esquerda, o resto centralizado */
+.calc td:nth-child(2){text-align:center;min-width:0}
+.calc td:first-child{text-align:left;min-width:150px;font-weight:600}
+.calc input{width:90px;min-width:0;text-align:center}
+.calc td b{color:var(--navy)}
+.aviso{margin:8px 0 0;padding:10px 14px;border-radius:10px;background:#fff0b3;color:#6b5300;font-weight:600}
